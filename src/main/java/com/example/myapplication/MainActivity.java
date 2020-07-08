@@ -149,8 +149,7 @@ class WeatherDataHandler {
     WeatherData weatherData;
     String[] starttime, endtime, parametername, parameterunit;
 
-    String url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=C" +
-            "WB-9A3F0E3E-CC4F-4284-84D3-F57EBDAB6A08&format=JSON&locationName=%E8%87%BA%E5%8C%97%E5%B8%82&elementName=MinT";
+    String url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-9A3F0E3E-CC4F-4284-84D3-F57EBDAB6A08&format=JSON&locationName=%E8%87%BA%E5%8C%97%E5%B8%82&elementName=MinT";
 
     public void jsonParse(RequestQueue mQueue) {
         weatherData = new WeatherData(starttime, endtime, parametername, parameterunit);
@@ -159,6 +158,7 @@ class WeatherDataHandler {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse: "+response.toString());
                         try {
                             JSONArray jsonArray = response.getJSONObject("records")
                                     .getJSONArray("location")
